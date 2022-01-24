@@ -3,20 +3,17 @@ const organize=require('../commands/organize')
 const help=require('../commands/help')
 
 
-let input=process.argv.slice(2)
-
-let inputArr=input // consist of command and file path
-
+let inputArr=process.argv.slice(2)
+//let inputArr=input // consist of command and file path
 let command=inputArr[0]
 
 switch(command){
     case 'tree':
         console.log('Tree Implemented')
-        //tree(inputArr[1])
         tree.treeModule(inputArr[1])
         break
     case 'organize':
-        //organizefn(inputArr[1])// always pass path in inside ('') this 
+       // always pass path in inside ('') this 
         organize.organizefnModule(inputArr[1])
         console.log('Organize Implemented')
         break
