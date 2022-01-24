@@ -15,9 +15,10 @@ let command=inputArr[0]
 switch(command){
     case 'tree':
         console.log('Tree Implemented')
+        tree(inputArr[1])
         break
     case 'organize':
-        organizefn(inputArr[1])// always pass path in ' inside this '
+        organizefn(inputArr[1])// always pass path in inside ('') this 
         console.log('Organize Implemented')
         break
     case 'help':
@@ -131,4 +132,47 @@ function sendFile(src,dest,category)
     let destFilePath=path.join(catPath,fileName)
     fs.copyFileSync(src,destFilePath);
     fs.unlinkSync(src)
+}
+
+// implementation of tree functionality
+function tree(dirPath)
+{
+    if(dirPath==undefined)
+    {
+        console.log("Enter valid path")
+        return
+    }
+    else if(fs.existsSync(dirPath)==false)
+    {
+        console.log("Path does not exsist")
+        return
+    }
+    else if(fs.existsSync(dirPath)==true)
+    {
+        treeHelper(dirPath,' ')
+    }
+}
+
+function treeHelper(targetPath , indent)
+{
+    let isFile=fs.lstatSync(targetPath).isFile()
+
+    if(isFile==true)
+    {
+        let fileName=path.basename(targetPath)
+        console.log(indent+'├──'+ fileName)
+    }
+    else
+    {
+        let dirName=path.basename(targetPath)
+        console.log(indent+"└──"+dirName)
+
+        let children=fs.readFileSync(targetPath)
+
+        for(let i=0;i<children.length;i++)
+        {
+            let childPath=path.join(targetPath,children[i])
+            treeHelper(childPath,indent+'\t')
+        }
+    }
 }
