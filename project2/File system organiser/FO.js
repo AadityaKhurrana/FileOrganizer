@@ -22,6 +22,7 @@ switch(command){
         break
     case 'help':
         console.log('Help Implemented')
+        helpfn();
         break
     default:
         console.log('Invalid Command')
@@ -29,6 +30,10 @@ switch(command){
 
 function helpfn()
 {
+    console.log(`List of all the commands->
+                                 1)Tree - node FO.js tree <dirPath>
+                                 2) organize - node FO.js organize <dirPath>
+                                 3)help - node FO.js help`);
 
 }
 
