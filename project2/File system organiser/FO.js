@@ -167,7 +167,7 @@ function treeHelper(targetPath , indent)
         let dirName=path.basename(targetPath)
         console.log(indent+"└──"+dirName)
 
-        let children=fs.readFileSync(targetPath)
+        let children=fs.readdirSync(targetPath)
 
         for(let i=0;i<children.length;i++)
         {
